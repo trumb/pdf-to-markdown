@@ -81,9 +81,8 @@ Homepage = "https://github.com/trumb/pdf-to-markdown"
 Repository = "https://github.com/trumb/pdf-to-markdown"
 Issues = "https://github.com/trumb/pdf-to-markdown/issues"
 
-[tool.setuptools]
-packages = ["pdf2md"]
-package-dir = {"" = "src"}
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.setuptools.package-data]
 pdf2md = ["py.typed"]

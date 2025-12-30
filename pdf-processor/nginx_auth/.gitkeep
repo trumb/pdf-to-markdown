@@ -1,0 +1,3 @@
+# This directory stores HTTP Basic Auth files
+# Generated files (*.htpasswd) are in .gitignore
+# Run: ./scripts/make-htpasswd.sh admin 'password' to create auth file

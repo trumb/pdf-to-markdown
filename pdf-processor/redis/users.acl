@@ -1,0 +1,17 @@
+# Redis ACL Configuration
+# Environment variables are substituted at runtime via envsubst
+
+# Disable default user (no password access)
+user default off
+
+# Restricted application user: only rate limiting operations
+# Permissions:
+# - ~rate_limit:* = only access keys with this prefix
+# - +ping +incr +expire +get +del +ttl = minimal commands for rate limiting
+user pdf2md on >${REDIS_APP_PASSWORD} ~rate_limit:* +ping +incr +expire +get +del +ttl
+
+# Admin user: full access for operations, monitoring, and Redis Commander
+# Permissions:
+# - allcommands = all Redis commands
+# - allkeys = all key patterns
+user redis_admin on >${REDIS_ADMIN_PASSWORD} allcommands allkeys

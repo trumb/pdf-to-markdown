@@ -1,0 +1,3 @@
+# This directory stores TLS certificates
+# Generated files (*.pem) are in .gitignore
+# Run: ./generate-certs.sh to create certificates
