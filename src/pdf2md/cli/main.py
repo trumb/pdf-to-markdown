@@ -3,6 +3,7 @@
 import typer
 from rich.console import Console
 
+from pdf2md.cli.commands import admin
 from pdf2md.cli.commands.convert import convert_command
 from pdf2md.cli.commands.info import info_command
 from pdf2md.cli.commands.validate import validate_command
@@ -22,6 +23,9 @@ console = Console()
 app.command(name="convert")(convert_command)
 app.command(name="info")(info_command)
 app.command(name="validate")(validate_command)
+
+# Register admin subcommand
+app.add_typer(admin.app, name="admin")
 
 
 def main() -> None:
