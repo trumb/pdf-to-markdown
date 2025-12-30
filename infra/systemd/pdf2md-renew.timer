@@ -1,0 +1,11 @@
+[Unit]
+Description=PDF2MD Certificate Renewal Timer
+Requires=pdf2md-renew.service
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=12h
+
+[Install]
+WantedBy=timers.target

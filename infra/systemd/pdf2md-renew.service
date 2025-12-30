@@ -1,0 +1,15 @@
+[Unit]
+Description=PDF2MD Certificate Renewal Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=root
+WorkingDirectory=/opt/pdf2md
+ExecStart=/opt/pdf2md/scripts/renew-certs.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
