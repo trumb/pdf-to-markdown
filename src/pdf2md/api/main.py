@@ -118,8 +118,8 @@ def create_app() -> FastAPI:
 
     # Include routers
     app.include_router(health.router, tags=["Health"])
-    app.include_router(convert.router, prefix="/api/v1", tags=["Convert"])
-    app.include_router(jobs.router, prefix="/api/v1/jobs", tags=["Jobs"])
-    app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
+    app.include_router(convert.router, prefix="/v1", tags=["Convert"])
+    app.include_router(jobs.router, prefix="/v1/jobs", tags=["Jobs"])
+    app.include_router(admin.router, prefix="/v1/admin", tags=["Admin"])
 
     return app
