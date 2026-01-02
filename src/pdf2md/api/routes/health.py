@@ -1,5 +1,7 @@
 """Health check endpoints."""
 
+from typing import Any
+
 from fastapi import APIRouter, Request
 
 router = APIRouter()
@@ -17,7 +19,7 @@ async def health_check() -> dict[str, str]:
 
 
 @router.get("/ready")
-async def readiness_check(request: Request) -> dict[str, any]:
+async def readiness_check(request: Request) -> dict[str, Any]:
     """
     Readiness check with dependency status.
     

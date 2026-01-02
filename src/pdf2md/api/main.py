@@ -3,7 +3,7 @@
 import logging
 import os
 from contextlib import asynccontextmanager
-from typing import AsyncGenerator
+from typing import Any, AsyncGenerator
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 database: Database
 job_queue: JobQueue
 job_worker: JobWorker
-rate_limiter: any
+rate_limiter: Any
 
 
 @asynccontextmanager

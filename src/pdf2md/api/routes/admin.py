@@ -1,6 +1,6 @@
 """Admin token management endpoints."""
 
-from typing import Optional
+from typing import Any, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
@@ -63,7 +63,7 @@ class UpdateTokenRequest(BaseModel):
 class TokenUsageResponse(BaseModel):
     """Token usage audit trail."""
 
-    usage: list[dict[str, any]]
+    usage: list[dict[str, Any]]
 
 
 @router.post("/tokens", response_model=CreateTokenResponse)

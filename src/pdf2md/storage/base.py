@@ -2,7 +2,7 @@
 
 from abc import ABC, abstractmethod
 from datetime import datetime
-from typing import AsyncIterator, Optional
+from typing import Any, AsyncIterator, Optional
 
 
 class BlobStorageProvider(ABC):
@@ -75,7 +75,7 @@ class BlobStorageProvider(ABC):
     @abstractmethod
     async def list_blobs(
         self, optPrefix: Optional[str] = None, intLimit: int = 1000
-    ) -> AsyncIterator[dict[str, any]]:
+    ) -> AsyncIterator[dict[str, Any]]:
         """
         List blobs with metadata.
         
@@ -120,7 +120,7 @@ class DocumentStorageProvider(ABC):
     """Abstract base for document storage providers."""
 
     @abstractmethod
-    async def insert(self, strCollection: str, dictDocument: dict[str, any]) -> str:
+    async def insert(self, strCollection: str, dictDocument: dict[str, Any]) -> str:
         """
         Insert document and return ID.
         
@@ -134,7 +134,7 @@ class DocumentStorageProvider(ABC):
         pass
 
     @abstractmethod
-    async def get(self, strCollection: str, strDocId: str) -> Optional[dict[str, any]]:
+    async def get(self, strCollection: str, strDocId: str) -> Optional[dict[str, Any]]:
         """
         Get document by ID.
         
@@ -149,7 +149,7 @@ class DocumentStorageProvider(ABC):
 
     @abstractmethod
     async def update(
-        self, strCollection: str, strDocId: str, dictUpdates: dict[str, any]
+        self, strCollection: str, strDocId: str, dictUpdates: dict[str, Any]
     ) -> bool:
         """
         Update document.
@@ -182,10 +182,10 @@ class DocumentStorageProvider(ABC):
     async def query(
         self,
         strCollection: str,
-        dictFilters: dict[str, any],
+        dictFilters: dict[str, Any],
         intLimit: int = 100,
         intOffset: int = 0,
-    ) -> list[dict[str, any]]:
+    ) -> list[dict[str, Any]]:
         """
         Query documents with filters.
         

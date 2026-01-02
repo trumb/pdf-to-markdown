@@ -2,7 +2,7 @@
 
 import json
 from datetime import datetime
-from typing import Optional
+from typing import Any, Optional
 
 from pdf2md.database import Database
 from pdf2md.jobs.id_generator import generate_job_id
@@ -29,7 +29,7 @@ class JobQueue:
         self,
         strOwnerUserId: str,
         strPdfPath: str,
-        dictOptions: dict[str, any],
+        dictOptions: dict[str, Any],
     ) -> str:
         """
         Create a new job.
@@ -136,7 +136,7 @@ class JobQueue:
         """
         # Build query
         strQuery = "SELECT * FROM jobs WHERE 1=1"
-        listParams: list[any] = []
+        listParams: list[Any] = []
 
         if optStatus:
             strQuery += " AND status = ?"

@@ -4,7 +4,7 @@ import asyncio
 import json
 import logging
 from pathlib import Path
-from typing import Optional
+from typing import Any, Optional
 
 from pdf2md.core.converter import PDFConverter
 from pdf2md.jobs.models import JobStatus
@@ -151,7 +151,7 @@ class JobWorker:
             )
 
     def _convert_pdf_sync(
-        self, converter: PDFConverter, strPdfPath: str, dictOptions: dict[str, any]
+        self, converter: PDFConverter, strPdfPath: str, dictOptions: dict[str, Any]
     ) -> str:
         """
         Synchronous PDF conversion wrapper.

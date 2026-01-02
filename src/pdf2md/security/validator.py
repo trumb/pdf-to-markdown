@@ -1,7 +1,9 @@
 """PDF file validation and security checks."""
 
 import hashlib
+import os
 from pathlib import Path
+from typing import Any
 
 
 class PDFValidator:
@@ -84,7 +86,7 @@ class PDFValidator:
         return hash_func.hexdigest()
 
     @staticmethod
-    def get_file_info(pdf_path: Path) -> dict[str, any]:  # type: ignore[misc]
+    def get_file_info(pdf_path: Path) -> dict[str, Any]:  # type: ignore[misc]
         """
         Get file information for validation.
 

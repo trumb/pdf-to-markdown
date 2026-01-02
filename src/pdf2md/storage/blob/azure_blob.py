@@ -3,7 +3,7 @@
 import logging
 import os
 from datetime import datetime
-from typing import AsyncIterator, Optional
+from typing import Any, AsyncIterator, Optional
 
 from pdf2md.storage.base import BlobStorageProvider
 
@@ -97,7 +97,7 @@ class AzureBlobStorage(BlobStorageProvider):
 
     async def list_blobs(
         self, optPrefix: Optional[str] = None, intLimit: int = 1000
-    ) -> AsyncIterator[dict[str, any]]:
+    ) -> AsyncIterator[dict[str, Any]]:
         """List blobs in Azure Blob Storage."""
         containerClient = self.client.get_container_client(self.strContainerName)
 

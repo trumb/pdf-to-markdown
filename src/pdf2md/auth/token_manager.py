@@ -4,7 +4,7 @@ import base64
 import secrets
 import uuid
 from datetime import datetime, timedelta
-from typing import Optional
+from typing import Any, Optional
 
 import bcrypt
 
@@ -330,7 +330,7 @@ class TokenManager:
 
     async def get_token_usage(
         self, strTokenId: str, intDays: int = 7
-    ) -> list[dict[str, any]]:
+    ) -> list[dict[str, Any]]:
         """
         Get token usage audit trail.
         

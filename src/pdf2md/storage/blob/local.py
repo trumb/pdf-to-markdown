@@ -3,7 +3,7 @@
 import os
 from datetime import datetime
 from pathlib import Path
-from typing import AsyncIterator, Optional
+from typing import Any, AsyncIterator, Optional
 
 from pdf2md.storage.base import BlobStorageProvider
 
@@ -92,7 +92,7 @@ class LocalBlobStorage(BlobStorageProvider):
 
     async def list_blobs(
         self, optPrefix: Optional[str] = None, intLimit: int = 1000
-    ) -> AsyncIterator[dict[str, any]]:
+    ) -> AsyncIterator[dict[str, Any]]:
         """List blobs in local filesystem."""
         pathBase = Path(self.strBasePath)
         strPattern = f"{optPrefix}*" if optPrefix else "*"

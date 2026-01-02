@@ -96,4 +96,5 @@ temp/
 
 # Prompts folder (documentation only)
 prompts/
-!prompts/.gitkeep
+!prompts/.gitkeeppdf-processor/.env.local
+pdf-processor/certs/*.pem

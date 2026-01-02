@@ -3,7 +3,7 @@
 import logging
 import os
 from datetime import datetime
-from typing import AsyncIterator, Optional
+from typing import Any, AsyncIterator, Optional
 
 from pdf2md.storage.base import BlobStorageProvider
 
@@ -93,7 +93,7 @@ class AWSS3Storage(BlobStorageProvider):
 
     async def list_blobs(
         self, optPrefix: Optional[str] = None, intLimit: int = 1000
-    ) -> AsyncIterator[dict[str, any]]:
+    ) -> AsyncIterator[dict[str, Any]]:
         """List blobs in S3."""
         dictParams = {"Bucket": self.strBucketName, "MaxKeys": intLimit}
 

@@ -3,7 +3,7 @@
 import logging
 import os
 from datetime import datetime
-from typing import AsyncIterator, Optional
+from typing import Any, AsyncIterator, Optional
 
 from pdf2md.storage.base import BlobStorageProvider
 
@@ -82,7 +82,7 @@ class GoogleCloudStorage(BlobStorageProvider):
 
     async def list_blobs(
         self, optPrefix: Optional[str] = None, intLimit: int = 1000
-    ) -> AsyncIterator[dict[str, any]]:
+    ) -> AsyncIterator[dict[str, Any]]:
         """List blobs in Google Cloud Storage."""
         listBlobs = list(self.client.list_blobs(self.strBucketName, prefix=optPrefix, max_results=intLimit))
 
