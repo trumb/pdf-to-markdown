@@ -101,6 +101,7 @@ def create_app() -> FastAPI:
         lifespan=lifespan,
         docs_url="/docs",
         openapi_url="/openapi.json",
+        root_path="/api",  # Support reverse proxy at /api/ prefix
     )
 
     # Add CORS middleware
