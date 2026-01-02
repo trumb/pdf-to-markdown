@@ -21,6 +21,10 @@ RUN pip install --no-cache-dir --user .
 # Runtime stage
 FROM python:3.11-slim
 
+# Install su-exec for user switching in entrypoint
+RUN apt-get update && apt-get install -y --no-install-recommends su-exec && \
+    rm -rf /var/lib/apt/lists/*
+
 # Create non-root user
 RUN useradd -m -u 1000 pdf2md && \
     mkdir -p /app /data /results /certs && \
@@ -35,12 +39,13 @@ COPY --from=builder /root/.local /home/pdf2md/.local
 COPY --chown=pdf2md:pdf2md src/ ./src/
 COPY --chown=pdf2md:pdf2md LICENSE README.md ./
 
+# Copy entrypoint script
+COPY docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Update PATH
 ENV PATH=/home/pdf2md/.local/bin:$PATH
 ENV PYTHONUNBUFFERED=1
-
-# Switch to non-root user
-USER pdf2md
 
 # Expose API port
 EXPOSE 8000
@@ -48,6 +53,9 @@ EXPOSE 8000
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"
+
+# Use entrypoint to fix permissions before starting app
+ENTRYPOINT ["docker-entrypoint.sh"]
 
 # Run FastAPI with uvicorn
 CMD ["uvicorn", "pdf2md.api.main:create_app", "--factory", "--host", "0.0.0.0", "--port", "8000"]
