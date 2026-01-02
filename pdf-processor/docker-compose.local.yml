@@ -59,20 +59,12 @@ services:
     env_file:
       - .env.local
     command:
-      - "sh"
-      - "-c"
-      - |
-        # Install gettext for envsubst (environment variable substitution)
-        apk add --no-cache gettext >/dev/null 2>&1 || true
-        # Expand environment variables in ACL file
-        envsubst < /usr/local/etc/redis/users.acl > /tmp/users.acl
-        # Launch Redis with expanded ACL file
-        exec redis-server /usr/local/etc/redis/redis.conf --aclfile /tmp/users.acl
+      - "redis-server"
+      - "/usr/local/etc/redis/redis.conf"
     expose:
       - "6379"
     volumes:
       - ./redis/redis.conf:/usr/local/etc/redis/redis.conf:ro
-      - ./redis/users.acl:/usr/local/etc/redis/users.acl:ro
     networks:
       - internal
     healthcheck:

@@ -85,7 +85,7 @@ Issues = "https://github.com/trumb/pdf-to-markdown/issues"
 where = ["src"]
 
 [tool.setuptools.package-data]
-pdf2md = ["py.typed"]
+pdf2md = ["py.typed", "**/*.sql"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
